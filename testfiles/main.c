@@ -5,7 +5,7 @@
 int main ()
 {
 
-	_printf("Character:%c\n", "C");
+	_printf("Character:%c\n", 'C');
 
 return (0);
 }

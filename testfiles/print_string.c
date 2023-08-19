@@ -8,17 +8,21 @@ void print_string(const char *str,...)
 
 	while (*str != '\0')
 	{
-		if (*str == % && *(str + 1) == 's')
+		if (*str == '%' && *(str + 1) == 's')
 		{
 			char *arg_str = va_arg(args, char *);
-			putchar(*arg_str);
-			arg_str++;
-		}
+			while (*arg_str != '\0')
+			{
+				putchar(*arg_str);
+				arg_str++;
+			}
 		str+=2;
-	}
-	else
-	{
-		putchar(*str);
+		}
+		else
+		{
+			putchar(*str);
+			str++;
+		}
 	}
 	va_end(args);
 }

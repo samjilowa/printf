@@ -6,6 +6,7 @@ int main ()
 {
 
 	_printf("Character:%c\n", 'C');
+	_printf("string:%s\n", "welcome")
 
 return (0);
 }

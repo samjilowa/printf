@@ -4,10 +4,13 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-/* Function prototypes */
+#define BUFF_SIZE 1024
+
 int sam_charwriter(char c);
-int sam_str_print(char *buffer);
 int kabelo_print_i(int num);
+int sam_str_print(char *buffer);
+int Sam_negative(int num);
+
 int _printf(const char *format, ...);
 
 #endif /* MAIN_H */

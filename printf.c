@@ -41,7 +41,8 @@ int _printf(const char *format, ...)
             }
             else if (*format == 'd' || *format == 'i')
             {
-                printed_chars += kabelo_print_i(va_arg(list, int));
+                int sam_num = va_arg(list, int);
+                printed_chars += Sam_negative(sam_num);
             }
         }
     }

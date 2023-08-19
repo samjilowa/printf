@@ -1,0 +1,41 @@
+#include "main.h"
+
+/* Implementation of Sam_negative function */
+int Sam_negative(int num)
+{
+    int kabelo_digit_count = 1;
+    int kabelo_digit_position;
+    int kabelo_num_copy = num;
+    int kabelo_char_print = 0;
+
+    if (num < 0)
+    {
+        sam_charwriter('-');
+        kabelo_char_print++;
+        kabelo_num_copy = -num;
+        num = -num;
+    }
+
+    int i;
+    for (i = 1; kabelo_num_copy >= 10; i++)
+    {
+        kabelo_num_copy /= 10;
+        kabelo_digit_count++;
+    }
+
+    for (kabelo_digit_position = 1; kabelo_digit_position <= kabelo_digit_count; kabelo_digit_position++)
+    {
+        int kabelo_divisor = 1;
+        int kabelo_digit = 0;
+
+        for (i = 1; i <= kabelo_digit_count - kabelo_digit_position; i++)
+            kabelo_divisor *= 10;
+
+        kabelo_digit = num / kabelo_divisor;
+        num %= kabelo_divisor;
+        sam_charwriter(kabelo_digit + '0');
+        kabelo_char_print++;
+    }
+
+    return kabelo_char_print;
+}

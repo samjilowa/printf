@@ -1,0 +1,32 @@
+#include "main.h"
+
+/* Implementation of Sam_binary function */
+int Sam_binary(unsigned int num)
+{
+    if (num == 0)
+    {
+        sam_charwriter('0');
+        return 1;
+    }
+
+    int kabelo_binary_digits = 0;
+    int kabelo_num_copy = num;
+
+    while (kabelo_num_copy > 0)
+    {
+        kabelo_num_copy /= 2;
+        kabelo_binary_digits++;
+    }
+
+    int kabelo_char_print = 0;
+    int i;
+
+    for (i = kabelo_binary_digits - 1; i >= 0; i--)
+    {
+        int kabelo_bit = (num >> i) & 1;
+        sam_charwriter(kabelo_bit + '0');
+        kabelo_char_print++;
+    }
+
+    return kabelo_char_print;
+}

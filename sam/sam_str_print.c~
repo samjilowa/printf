@@ -1,0 +1,19 @@
+#include "main.h"
+
+/* Implementation of sam_str_print function */
+int sam_str_print(char *str)
+{
+    int len = 0;
+
+    if (str == NULL)
+        str = "(null)";
+
+    while (*str != '\0')
+    {
+        sam_charwriter(*str);
+        str++;
+        len++;
+    }
+
+    return len;
+}

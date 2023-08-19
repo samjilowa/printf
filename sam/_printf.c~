@@ -1,0 +1,66 @@
+/* _printf.c */
+
+#include <stdarg.h>
+#include <stddef.h> /* Include for NULL */
+#include <unistd.h> /* Include for write() */
+#include "main.h"
+
+/**
+ * kabelo_printf - Custom printf function
+ * @format: The format string
+ *
+ * Return: The total number of characters printed
+ */
+int kabelo_printf(const char *format, ...)
+{
+    int kabelo_char_print = 0;
+    va_list kabelo_list;
+
+    if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+        return -1;
+
+    va_start(kabelo_list, format);
+
+    for (int kabelo_i = 0; format[kabelo_i] != '\0'; kabelo_i++)
+    {
+        if (format[kabelo_i] != '%')
+        {
+            sam_charwriter(format[kabelo_i]);
+            kabelo_char_print++;
+        }
+        else
+        {
+            kabelo_i++;
+
+            if (format[kabelo_i] == 'c')
+            {
+                char kabelo_ch = va_arg(kabelo_list, int);
+                sam_charwriter(kabelo_ch);
+                kabelo_char_print++;
+            }
+            else if (format[kabelo_i] == '%')
+            {
+                sam_charwriter('%');
+                kabelo_char_print++;
+            }
+            else if (format[kabelo_i] == 's')
+            {
+                kabelo_char_print += sam_str_print(va_arg(kabelo_list, char *));
+            }
+            else if (format[kabelo_i] == 'd' || format[kabelo_i] == 'i')
+            {
+                int kabelo_num = va_arg(kabelo_list, int);
+                kabelo_char_print += kabelo_negative(kabelo_num);
+            }
+            else if (format[kabelo_i] == 'b')
+            {
+                unsigned int kabelo_num = va_arg(kabelo_list, unsigned int);
+                kabelo_char_print += kabelo_binary(kabelo_num);
+            }
+        }
+    }
+
+    va_end(kabelo_list);
+
+    return kabelo_char_print;
+}

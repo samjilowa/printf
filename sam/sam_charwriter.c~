@@ -1,0 +1,7 @@
+#include "main.h"
+
+/* Implementation of sam_charwriter function */
+int sam_charwriter(char c)
+{
+    return write(1, &c, 1);
+}

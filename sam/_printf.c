@@ -53,3 +53,4 @@ int _printf(const char *format, ...)
 
     return kabelo_char_print;
 }
+

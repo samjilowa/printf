@@ -1,7 +1,11 @@
 #include <stdarg.h>
 #include "main.h"
 
-/* Implementation of _printf function */
+/**
+ * _printf - Implementation of _printf function
+ * @format: character pointer
+ * Return: Printed Chars
+ */
 
 int _printf(const char *format, ...)
 {
@@ -9,11 +13,11 @@ int _printf(const char *format, ...)
     va_list list;
 
     if (format == NULL || (format[0] == '%' && format[1] == '\0'))
-        return -1;
+        return (-1);
 
     va_start(list, format);
 
-    for (; *format != '\0'; format++)
+    for (int i = 0; *format != '\0'; format++)
     {
         if (*format != '%')
         {
@@ -41,7 +45,7 @@ int _printf(const char *format, ...)
             }
             else if (*format == 'd' || *format == 'i')
             {
-                int sam_num = va_arg(list, int);
+int sam_num = va_arg(list, int);
                 printed_chars += Sam_negative(sam_num);
             }
         }

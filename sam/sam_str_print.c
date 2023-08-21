@@ -9,16 +9,17 @@
  */
 int sam_str_print(char *str)
 {
-    if (str == NULL)
-        str = "(null)";
+	if (str == NULL);
 
-    int kabelo_char_print = 0;
+	str = "(null)";
 
-    while (*str)
-    {
-        kabelo_char_print += sam_charwriter(*str);
-        str++;
-    }
+	int kabelo_char_print = 0;
 
-    return kabelo_char_print;
+	while (*str)
+	{
+		kabelo_char_print += sam_charwriter(*str);
+		str++;
+	}
+
+	return (kabelo_char_print);
 }

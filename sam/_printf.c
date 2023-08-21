@@ -9,7 +9,7 @@ int _printf(const char *format, ...)
     va_list list;
 
     if (format == NULL || (format[0] == '%' && format[1] == '\0'))
-        return -1;
+        return (-1);
 
     va_start(list, format);
 
@@ -25,7 +25,7 @@ int _printf(const char *format, ...)
 
             if (*format == 'c')
             {
-                char sam_ch = va_arg(list, int);
+                int sam_ch = va_arg(list, int);
                 kabelo_char_print += sam_charwriter(sam_ch);
             }
             else if (*format == '%')
@@ -34,7 +34,8 @@ int _printf(const char *format, ...)
             }
             else if (*format == 's')
             {
-                kabelo_char_print += sam_str_print(va_arg(list, char *));
+                char *sam_str = va_arg(list, char *);
+		kabelo_char_print += sam_str_print(sam_str);
             }
             else if (*format == 'd' || *format == 'i')
             {

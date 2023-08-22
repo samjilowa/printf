@@ -12,4 +12,8 @@ int Sam_negative(int num);
 
 int _printf(const char *format, ...);
 
+void handle_format(const char *format,...);
+void handle_string(va_list list, int *printed_chars);
+void handle_integer(va_list, int *printed_chars);
+
 #endif /* MAIN_H */

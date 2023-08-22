@@ -1,5 +1,6 @@
-#include <stdarg.h>
 #include "main.h"
+#include <stddef.h>
+#include <stdarg.h>
 
 /**
  * _printf - Implementation of _printf function
@@ -8,65 +9,39 @@
  * Return: The total number of characters printed
  */
 
-void handle_format(const char *format, ...);
-void handle_string(va_list list, int *printed_chars);
-void handle_integer(va_list list, int *printed_chars);
+int _printf(const char *format, ...) {
+    va_list list;
+    int printed_chars = 0;
 
-int _printf(const char *format, ...)
-{
-	va_list list;
-	int printed_chars = 0;
-	int i = 0;
+    if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+        return -1;
 
-	va_start(list, format);
+    va_start(list, format);
 
-	for (i = 0; format[i] != '\0'; i++)
-	{
-		if (format[i] != '%')
-		{
-			sam_charwriter(format[i]);
-			printed_chars++;
-		}
-		else
-		{
-			i++;
+    for (; *format != '\0'; format++) {
+        if (*format != '%') {
+            sam_charwriter(*format);
+            printed_chars++;
+        } else {
+            format++;
 
-			if (format[i] == '\0' || format[i] == ' ')
-			{
-				va_end(list);
-				return (-1);
-			}
+            if (*format == 'c') {
+                char sam_ch = va_arg(list, int);
+                sam_charwriter(sam_ch);
+                printed_chars++;
+            } else if (*format == '%') {
+                sam_charwriter('%');
+                printed_chars++;
+            } else if (*format == 's') {
+                printed_chars += sam_str_print(va_arg(list, char *));
+            } else if (*format == 'd' || *format == 'i') {
+                int sam_num = va_arg(list, int);
+                printed_chars += Sam_negative(sam_num);
+            }
+        }
+    }
 
-			switch (format[i])
-			{
-				case 'c':
-					handle_character(list, &printed_chars);
-					break;
+    va_end(list);
 
-				case '%':
-					sam_charwriter('%');
-					printed_chars++;
-					break;
-
-				case 's':
-					handle_string(list, &printed_chars);
-					break;
-
-				case 'd':
-				case 'i':
-					handle_integer(list, &printed_chars);
-					break;
-
-				default:
-					sam_charwriter(format[i]);
-					printed_chars++;
-					break;
-
-			}
-
-		}
-
-	}
-	va_end(list);
-	return (printed_chars);
+    return printed_chars;
 }

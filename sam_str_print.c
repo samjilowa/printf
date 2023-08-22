@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stddef.h>
 /**
 * sam_str_print - Prints a string to the standard output
 * @buffer: Pointer to the string to be printed

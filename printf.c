@@ -9,6 +9,7 @@
  * Return: The total number of characters printed
  */
 
+
 int _printf(const char *format, ...)
 {
     va_list list;

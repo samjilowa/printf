@@ -17,7 +17,7 @@ int kabelo_binary(unsigned int sam_num)
 	{
 		kabelo_char_print += sam_charwriter('0');
 		return (kabelo_char_print);
-	}	
+	}
 
 	while (kabelo_num_copy > 0)
 	{
@@ -28,8 +28,9 @@ int kabelo_binary(unsigned int sam_num)
 	while (kabelo_binary_digits > 0)
 	{
 		kabelo_binary_digits--;
-		kabelo_char_print += sam_charwriter((sam_num >> kabelo_binary_digits) & 1 ? '1' : '0');
+		kabelo_char_print += sam_charwriter
+		((sam_num >> kabelo_binary_digits) & 1 ? '1' : '0');
 	}
 
-	return(kabelo_char_print);
+	return (kabelo_char_print);
 }

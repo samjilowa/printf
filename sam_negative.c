@@ -9,16 +9,16 @@
  */
 
 int Sam_negative(int num)
+{  
+int count = 0;
+
+if (num < 0)
 {
-    int count = 0;
+count += sam_charwriter('-');
+num = -num;
+}
 
-    if (num < 0)
-    {
-        count += sam_charwriter('-');
-        num = -num;
-    }
+count += kabelo_print_i(num);
 
-    count += kabelo_print_i(num);
-
-    return count;
+return (count);
 }
